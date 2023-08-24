@@ -1,0 +1,4 @@
+batch_size: 1  # 单张显卡一次读取图片的张数
+learning_rate: 0.005  # 学习率
+epochs: 6  # 单张显卡迭代次数
+save_period: 1  # 保存模型的间隔次数

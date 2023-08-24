@@ -1,0 +1,15 @@
+# 一步到位构建训练镜像
+FROM nvcr.io/nvidia/pytorch:22.07-py3
+
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
+
+COPY models /models
+COPY PaddleOCR /PaddleOCR
+COPY SpeedML_det /SpeedML
+
+RUN python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+
+RUN pip install -r /SpeedML/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+WORKDIR /workspace
+ENTRYPOINT /SpeedML/train.sh
